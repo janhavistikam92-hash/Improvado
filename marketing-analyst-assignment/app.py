@@ -12,6 +12,10 @@ computed in pandas against the same metric computed in SQL on Neon.
 from __future__ import annotations
 
 import math
+from pathlib import Path
+
+# Resolve paths relative to this file so Streamlit Cloud works correctly
+HERE = Path(__file__).parent
 
 import pandas as pd
 import plotly.express as px
@@ -26,7 +30,7 @@ from sqlalchemy.engine import Engine
 
 st.set_page_config(
     page_title="Cross-Channel Executive Dashboard",
-    page_icon="logo.png",
+    page_icon=str(HERE / "logo.png"),
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -248,7 +252,7 @@ except Exception as e:
 
 col_logo, col_title = st.columns([1, 4])
 with col_logo:
-    st.image("logo.png", width=220)
+    st.image(str(HERE / "logo.png"), width=220)
 with col_title:
     st.markdown(
         f"""
